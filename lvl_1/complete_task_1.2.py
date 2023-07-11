@@ -1,3 +1,5 @@
+# Задание 1.2
+
 # Пункт А c использованием метода random и datetime
 
 my_favorite_songs = [
