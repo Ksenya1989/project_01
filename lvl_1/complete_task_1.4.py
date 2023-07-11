@@ -1,4 +1,3 @@
-# Задача 4
 # Задача 1.4.
 
 # Есть словарь кодов товаров titles
@@ -27,24 +26,14 @@ store = {
 # "<товар> - <кол-во> шт, стоимость <общая стоимость> руб"
 # Пример: "Кроссовки тип 3 (Adidas) - 31 шт, стоимость 50747 руб"
 
-answer = dict()
-for name in titles.items():
-    temp_name = []
-    for i in store[name[1]]:
+ 
+for name_prod, code in titles.items():  # Пробегаемся по словарю "товары" для получением названия товара и его кода
+    quantity = 0  # инициализация переменной для подсчета количества товара
+    price = 0  # инициализация переменной для подсчета стоимости товара
+    cost = 0  # инициализация переменной для подсчета ОБЩЕЙ стоимости товара
 
-        if name[0] not in answer:
-            total_quantity = i['quantity']
-            total_cost = i['quantity'] * i['price']
-            temp_name.append(total_quantity)
-            temp_name.append(total_cost)
-            answer[name[0]] = temp_name
-
-        else:
-            new_cost = i['quantity'] * i['price']
-            answer[name[0]][0] += i['quantity']
-            answer[name[0]][1] += new_cost
-
-    temp_name = []
-
-for text in answer.items():
-    print(f'"{text[0]} - {text[1][0]} шт, стоимость {text[1][1]} руб"')
+    for titles in store[code]: # получение списка на складе по коду товара
+        quantity += titles['quantity'] # подсчет количества товара
+        price = titles['price'] # подсчет стоимости товара
+        cost += quantity * price # подсчет ОБЩЕЙ стоимости товара
+        print(name_prod, " - ", quantity, " шт, ", "стоимость ", cost, " руб") # вывод на консоль количества и стоимости товара на складе
